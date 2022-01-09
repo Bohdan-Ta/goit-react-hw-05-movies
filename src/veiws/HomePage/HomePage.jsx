@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { fetchAPI } from '../../servises/api';
-import CardFilm from '../../components/CardsFilm';
+import CardsFilm from '../../components/CardsFilm';
 
 export default function HomePage() {
   const [films, setFilms] = useState(null);
@@ -11,16 +11,7 @@ export default function HomePage() {
       setFilms(films);
     };
     fechFilms();
-    console.log(films);
   }, []);
 
-  return (
-    <>
-      {films && (
-        <>
-          <CardFilm films={films.results} />
-        </>
-      )}
-    </>
-  );
+  return <>{films && <CardsFilm films={films.results} />}</>;
 }

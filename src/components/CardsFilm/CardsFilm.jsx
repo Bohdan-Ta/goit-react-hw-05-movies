@@ -11,7 +11,7 @@ export default function CardsFilm({ films }) {
           <li key={id} className={s.item}>
             <Link
               to={{
-                pathname: `/movies/${id}`,
+                pathname: `/films/${id}`,
                 state: { from: location },
               }}
               className={s.title}

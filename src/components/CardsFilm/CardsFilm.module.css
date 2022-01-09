@@ -1,15 +1,16 @@
 .list {
   display: flex;
+  gap: 20px;
+  padding: 0;
   flex-wrap: wrap;
   justify-content: center;
-  margin: -20px;
   text-align: center;
   list-style: none;
 }
 
 .item {
   margin: 20px;
-  width: 300px;
+  width: 330px;
   border-radius: 5px;
   overflow: hidden;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -30,6 +31,6 @@
 }
 
 .image {
-  width: 300px;
+  width: 100%;
   height: auto;
 }
