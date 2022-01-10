@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react';
 import {
+  Switch,
+  Route,
+  NavLink,
   useParams,
   useLocation,
   useHistory,
@@ -7,14 +10,14 @@ import {
 } from 'react-router-dom';
 import { fetchAPI } from '../../servises/api';
 import s from './MovieDetailsPage.module.css';
+import Review from '../Reviews/Reviews';
 
 export default function MovieDetailsPage() {
   const { filmId } = useParams();
-  console.log(filmId);
   const location = useLocation();
   const history = useHistory();
-  const { path } = useRouteMatch();
   const [film, setFilm] = useState(null);
+  const { url, path } = useRouteMatch();
 
   useEffect(() => {
     const fechFilms = async () => {
@@ -65,14 +68,41 @@ export default function MovieDetailsPage() {
           </div>
         </div>
       )}
+
       <div className={s.searchbar}>
-        <button type="button" onClick={null} className={s.button}>
+        <nav>
+          <NavLink
+            to={`${url}/cast`}
+            className={s.link}
+            activeClassName={s.activeLink}
+          >
+            Cast
+          </NavLink>
+          <NavLink
+            to={`${url}/reviews`}
+            className={s.link}
+            activeClassName={s.activeLink}
+          >
+            Reviews
+          </NavLink>
+        </nav>
+
+        {/* <button type="button" onClick={null} className={s.button}>
           Cast
         </button>
         <button type="button" onClick={null} className={s.button}>
           Reviews
-        </button>
+        </button> */}
       </div>
+      <Switch>
+        {/* <Route path={`${path}/cast`}>
+                  <MovieCastView movieId={movieId} />
+                </Route> */}
+
+        <Route path={`${path}/reviews`}>
+          <Review filmId={filmId} />
+        </Route>
+      </Switch>
     </>
   );
 }
