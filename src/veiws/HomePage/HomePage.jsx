@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { fetchAPI } from '../../servises/api';
 import CardsFilm from '../../components/CardsFilm';
+import s from './HomePage.module.css';
 
 export default function HomePage() {
   const [films, setFilms] = useState(null);
@@ -13,5 +14,10 @@ export default function HomePage() {
     fechFilms();
   }, []);
 
-  return <>{films && <CardsFilm films={films.results} />}</>;
+  return (
+    <>
+      <h1 className={s.title}> Trending today </h1>
+      {films && <CardsFilm films={films.results} />}
+    </>
+  );
 }
