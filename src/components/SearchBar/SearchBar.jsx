@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 
 import s from './SearchBar.module.css';
 
-export default function Searchbar({ onSubmit }) {
+function Searchbar({ onSubmit }) {
   const [value, setValue] = useState('');
 
   const handleOnChange = e => {
@@ -47,3 +47,5 @@ export default function Searchbar({ onSubmit }) {
 Searchbar.propTypes = {
   onSubmit: PropTypes.func.isRequired,
 };
+
+export default Searchbar;

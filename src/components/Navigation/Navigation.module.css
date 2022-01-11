@@ -7,6 +7,5 @@
   font-size: 24px;
 }
 .activLink {
-  composes: link;
   color: #2196f3;
 }

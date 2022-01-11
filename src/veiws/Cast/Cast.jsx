@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { fetchAPI } from '../../servises/api';
+import nofaces from '../../images/noFace.png';
 import s from './Cast.module.css';
 
 export default function Casts({ filmId }) {
@@ -24,7 +25,7 @@ export default function Casts({ filmId }) {
                   src={
                     element.profile_path
                       ? `https://image.tmdb.org/t/p/w400${element.profile_path}`
-                      : 'No Images'
+                      : nofaces
                   }
                   alt={element.name}
                   width="100"

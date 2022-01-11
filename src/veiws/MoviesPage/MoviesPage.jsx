@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import SearchBar from '../../components/SearchBar';
 import { useLocation, useHistory } from 'react-router-dom';
-import CardsFilm from '../../components/CardsFilm';
 import { fetchAPI } from '../../servises/api';
+import SearchBar from '../../components/SearchBar';
+import CardsFilm from '../../components/CardsFilm';
 
 export default function MoviesPage() {
   const location = useLocation();

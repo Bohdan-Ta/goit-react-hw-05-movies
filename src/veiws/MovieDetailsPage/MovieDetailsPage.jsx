@@ -9,33 +9,36 @@ import {
   useRouteMatch,
 } from 'react-router-dom';
 import { fetchAPI } from '../../servises/api';
-import s from './MovieDetailsPage.module.css';
 import Review from '../Reviews/Reviews';
 import Cast from '../Cast';
+import noPoster from '../../images/videofilm.png';
+import s from './MovieDetailsPage.module.css';
 
 export default function MovieDetailsPage() {
-  const { filmId } = useParams();
-  const location = useLocation();
-  const history = useHistory();
   const [film, setFilm] = useState(null);
+  const location = useLocation();
+  console.log(location);
+  const history = useHistory();
+  const { filmId } = useParams();
   const { url, path } = useRouteMatch();
 
   useEffect(() => {
-    const fechFilms = async () => {
+    async function fechFilms() {
       const film = await fetchAPI(`/movie/${filmId}?`);
       setFilm(film);
-    };
+    }
     fechFilms();
   }, [filmId]);
 
   const onGoToBack = () => {
-    history.push(location?.state?.from ?? '/home');
+    history.push(location?.state?.from ?? '/');
   };
+
   return (
     <>
       <div className={s.searchbar}>
         <button type="button" onClick={onGoToBack} className={s.button}>
-          Go to back
+          Go back
         </button>
       </div>
 
@@ -46,7 +49,7 @@ export default function MovieDetailsPage() {
             src={
               film.poster_path
                 ? `https://image.tmdb.org/t/p/w400${film.poster_path}`
-                : 'No Images'
+                : noPoster
             }
             alt={film.title ? film.title : film.name}
           />
@@ -63,7 +66,7 @@ export default function MovieDetailsPage() {
             <p className={s.subtitle}>
               Genres:
               <span className={s.genres}>
-                {film.genres.map(genre => genre.name).join(' / ')}
+                {film.genres.map(genre => genre.name).join(' | ')}
               </span>
             </p>
           </div>
@@ -74,26 +77,19 @@ export default function MovieDetailsPage() {
         <nav>
           <NavLink
             to={`${url}/cast`}
-            className={s.link}
+            className={s.button}
             activeClassName={s.activeLink}
           >
             Cast
           </NavLink>
           <NavLink
             to={`${url}/reviews`}
-            className={s.link}
+            className={s.button}
             activeClassName={s.activeLink}
           >
             Reviews
           </NavLink>
         </nav>
-
-        {/* <button type="button" onClick={null} className={s.button}>
-          Cast
-        </button>
-        <button type="button" onClick={null} className={s.button}>
-          Reviews
-        </button> */}
       </div>
       <Switch>
         <Route path={`${path}/reviews`}>

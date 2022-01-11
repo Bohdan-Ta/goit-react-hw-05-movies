@@ -1,8 +1,10 @@
 import { Link, useLocation } from 'react-router-dom';
+
 import PropTypes from 'prop-types';
+import noposter from '../../images/videofilm.png';
 import s from './CardsFilm.module.css';
 
-export default function CardsFilm({ films }) {
+function CardsFilm({ films }) {
   const location = useLocation();
   return (
     <>
@@ -22,11 +24,11 @@ export default function CardsFilm({ films }) {
                   src={
                     poster_path
                       ? `https://image.tmdb.org/t/p/w400${poster_path}`
-                      : 'No Images'
+                      : noposter
                   }
-                  alt={title ? title : name}
+                  alt={title || name}
                 />
-                <h2 className={s.title}>{title ? title : name}</h2>
+                <h2 className={s.title}>{title || name}</h2>
               </Link>
             </li>
           ))}
@@ -42,3 +44,5 @@ CardsFilm.propTypes = {
     }),
   ),
 };
+
+export default CardsFilm;
