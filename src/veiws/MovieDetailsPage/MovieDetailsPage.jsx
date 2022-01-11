@@ -11,6 +11,7 @@ import {
 import { fetchAPI } from '../../servises/api';
 import s from './MovieDetailsPage.module.css';
 import Review from '../Reviews/Reviews';
+import Cast from '../Cast';
 
 export default function MovieDetailsPage() {
   const { filmId } = useParams();
@@ -28,7 +29,7 @@ export default function MovieDetailsPage() {
   }, [filmId]);
 
   const onGoToBack = () => {
-    history.push(location?.state?.from ?? '/');
+    history.push(location?.state?.from ?? '/home');
   };
   return (
     <>
@@ -95,12 +96,11 @@ export default function MovieDetailsPage() {
         </button> */}
       </div>
       <Switch>
-        {/* <Route path={`${path}/cast`}>
-                  <MovieCastView movieId={movieId} />
-                </Route> */}
-
         <Route path={`${path}/reviews`}>
           <Review filmId={filmId} />
+        </Route>
+        <Route path={`${path}/cast`}>
+          <Cast filmId={filmId} />
         </Route>
       </Switch>
     </>
