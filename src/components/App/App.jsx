@@ -1,4 +1,5 @@
 import { Route, Switch } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 
 import Section from '../Section';
 import AppBar from '../AppBar';
@@ -9,23 +10,26 @@ import NotFoundView from '../../veiws/NotFoundView';
 
 function App() {
   return (
-    <Section>
-      <AppBar />
-      <Switch>
-        <Route path="/" exact>
-          <HomePage />
-        </Route>
-        <Route path="/films" exact>
-          <MoviesPage />
-        </Route>
-        <Route path="/films/:filmId">
-          <MovieDetailsPage />
-        </Route>
-        <Route>
-          <NotFoundView />
-        </Route>
-      </Switch>
-    </Section>
+    <>
+      <Section>
+        <AppBar />
+        <Switch>
+          <Route path="/" exact>
+            <HomePage />
+          </Route>
+          <Route path="/films" exact>
+            <MoviesPage />
+          </Route>
+          <Route path="/films/:filmId">
+            <MovieDetailsPage />
+          </Route>
+          <Route>
+            <NotFoundView />
+          </Route>
+        </Switch>
+      </Section>
+      <ToastContainer autoClose={3000} />
+    </>
   );
 }
 

@@ -5,8 +5,8 @@ import Button from '../../components/Button';
 import s from './HomePage.module.css';
 
 export default function HomePage() {
-  const [films, setFilms] = useState(null);
-  const [page, setPage] = useState(2);
+  const [films, setFilms] = useState([]);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     const fechFilms = async () => {
@@ -16,15 +16,19 @@ export default function HomePage() {
     fechFilms();
   }, [page]);
 
-  const loadMore = () => {
+  const nextPageFilms = () => {
     setPage(page => page + 1);
+    window.scrollTo({
+      behavior: 'smooth',
+      top: 0,
+    });
   };
 
   return (
-    <>
+    <div className={s.container}>
       <h1 className={s.title}> Trending today </h1>
       {films && <CardsFilm films={films.results} />}
-      <Button loadMore={loadMore} />
-    </>
+      <Button loadMore={nextPageFilms} />
+    </div>
   );
 }
