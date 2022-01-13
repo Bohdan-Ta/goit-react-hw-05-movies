@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { toast } from 'react-toastify';
 
 const getDataMovies = axios.create({
   baseURL: 'https://api.themoviedb.org/3',
@@ -14,6 +13,6 @@ export async function fetchAPI(q) {
     const { data } = await getDataMovies(q);
     return data;
   } catch (error) {
-    toast.dark(`No image with  ${q}`);
+    console.error(error);
   }
 }

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import { fetchAPI } from '../../servises/api';
 import SearchBar from '../../components/SearchBar';
@@ -21,6 +22,9 @@ export default function MoviesPage() {
 
     const fechFilms = async () => {
       const films = await fetchAPI(`search/movie?query=${value}&page=${page}`);
+      if (films.results.length === 0 && films.total_results !== 0) {
+        toast.info('Nothing more found');
+      }
       setFilms(films);
     };
 

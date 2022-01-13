@@ -12,7 +12,6 @@ export default function Review({ filmId }) {
     };
     fechFilms();
   }, [filmId]);
-  console.log(reviews);
   return (
     <div>
       {reviews.length > 0 ? (

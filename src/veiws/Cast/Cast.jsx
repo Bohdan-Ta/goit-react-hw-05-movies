@@ -13,7 +13,6 @@ export default function Casts({ filmId }) {
     };
     fechFilms();
   }, [filmId]);
-  console.log(cast);
   return (
     <div>
       {cast.length > 0 ? (
