@@ -5,6 +5,7 @@ import {
   NavLink,
   useParams,
   useHistory,
+  useLocation,
   useRouteMatch,
 } from 'react-router-dom';
 import { fetchAPI } from '../../servises/api';
@@ -22,6 +23,7 @@ const Cast = lazy(() => import('../Cast' /* webpackChunkName: "cast" */));
 export default function MovieDetailsPage() {
   const [film, setFilm] = useState(null);
   const history = useHistory();
+  const location = useLocation();
   const { filmId } = useParams();
   const { url, path } = useRouteMatch();
 
@@ -33,14 +35,14 @@ export default function MovieDetailsPage() {
     fechFilms();
   }, [filmId]);
 
-  const onGoToBack = () => {
-    history.goBack();
+  const onBack = () => {
+    history.push(location?.state?.from ?? '/');
   };
 
   return (
     <>
       <div className={s.searchbar}>
-        <button type="button" onClick={onGoToBack} className={s.button}>
+        <button type="button" onClick={onBack} className={s.button}>
           Go back
         </button>
       </div>

@@ -28,7 +28,7 @@ export default function HomePage() {
     <div className={s.container}>
       <h1 className={s.title}> Trending today </h1>
       {films && <CardsFilm films={films.results} />}
-      <Button loadMore={nextPageFilms} />
+      {films && <Button loadMore={nextPageFilms} />}
     </div>
   );
 }

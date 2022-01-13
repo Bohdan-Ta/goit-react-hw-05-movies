@@ -6,6 +6,7 @@ import { fetchAPI } from '../../servises/api';
 import SearchBar from '../../components/SearchBar';
 import CardsFilm from '../../components/CardsFilm';
 import Button from '../../components/Button';
+
 import s from './MoviesPage.module.css';
 
 export default function MoviesPage() {
