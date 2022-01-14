@@ -15,6 +15,7 @@ export default function MoviesPage() {
   const [value, setValue] = useState(null);
   const [films, setFilms] = useState(null);
   const [page, setPage] = useState(1);
+
   const searchValue = new URLSearchParams(location.search).get('query');
 
   useEffect(() => {
@@ -25,7 +26,9 @@ export default function MoviesPage() {
     setValue(searchValue);
 
     const fechFilms = async () => {
-      const films = await fetchAPI(`search/movie?query=${value}&page=${page}`);
+      const films = await fetchAPI(
+        `search/movie?query=${searchValue}&page=${page}`,
+      );
       if (films.results.length === 0 && films.total_results !== 0) {
         toast.info('Nothing more found');
       }
