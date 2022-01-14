@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 
 import PropTypes from 'prop-types';
-import noposter from '../../images/videofilm.png';
+import noPoster from '../../images/pngwing.png';
 import s from './CardsFilm.module.css';
 
 function CardsFilm({ films }) {
@@ -24,7 +24,7 @@ function CardsFilm({ films }) {
                   src={
                     poster_path
                       ? `https://image.tmdb.org/t/p/w400${poster_path}`
-                      : noposter
+                      : noPoster
                   }
                   alt={title || name}
                 />

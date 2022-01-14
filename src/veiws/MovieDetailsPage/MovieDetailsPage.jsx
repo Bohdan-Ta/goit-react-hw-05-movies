@@ -11,7 +11,7 @@ import {
 import { fetchAPI } from '../../servises/api';
 import Loader from '../../components/Loader';
 
-import noPoster from '../../images/videofilm.png';
+import noPoster from '../../images/pngwing.png';
 
 import s from './MovieDetailsPage.module.css';
 

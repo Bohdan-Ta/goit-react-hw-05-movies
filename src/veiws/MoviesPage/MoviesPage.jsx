@@ -15,11 +15,14 @@ export default function MoviesPage() {
   const [value, setValue] = useState(null);
   const [films, setFilms] = useState(null);
   const [page, setPage] = useState(1);
+  const searchValue = new URLSearchParams(location.search).get('query');
 
   useEffect(() => {
-    if (!value) {
+    if (!searchValue) {
       return;
     }
+
+    setValue(searchValue);
 
     const fechFilms = async () => {
       const films = await fetchAPI(`search/movie?query=${value}&page=${page}`);
@@ -30,12 +33,14 @@ export default function MoviesPage() {
     };
 
     fechFilms();
-  }, [value, page]);
+  }, [page, value, searchValue]);
 
   const onFormSubmit = value => {
     setValue(value);
-    history.push({ ...location, search: `value=${value}` });
+    setPage(1);
+    history.push({ ...location, search: `?query=${value}` });
   };
+
   const nextPageFilms = () => {
     setPage(page => page + 1);
     window.scrollTo({
