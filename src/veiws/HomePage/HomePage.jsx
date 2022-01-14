@@ -10,24 +10,21 @@ export default function HomePage() {
 
   useEffect(() => {
     const fechFilms = async () => {
-      const films = await fetchAPI(`/trending/movie/day?page=${page}`);
-      setFilms(films);
+      const { results } = await fetchAPI(`/trending/movie/day?page=${page}`);
+      setFilms(films => [...films, ...results]);
     };
+
     fechFilms();
   }, [page]);
 
   const nextPageFilms = () => {
     setPage(page => page + 1);
-    window.scrollTo({
-      behavior: 'smooth',
-      top: 0,
-    });
   };
-
+  // const data = films;
   return (
     <div className={s.container}>
       <h1 className={s.title}> Trending today </h1>
-      {films && <CardsFilm films={films.results} />}
+      {films && <CardsFilm films={films} />}
       {films && <Button loadMore={nextPageFilms} />}
     </div>
   );

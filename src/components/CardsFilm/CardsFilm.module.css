@@ -3,14 +3,13 @@
   gap: 20px;
   padding: 0;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-between;
   text-align: center;
   list-style: none;
 }
 
 .item {
-  margin: 20px;
-  width: 330px;
+  width: 200px;
   border-radius: 5px;
   overflow: hidden;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -23,7 +22,7 @@
 
 .title {
   text-align: center;
-  font-size: 28px;
+  font-size: 18px;
   font-weight: 700;
   text-decoration: none;
   color: rgb(46, 48, 187);
