@@ -24,8 +24,9 @@ export default function MovieDetailsPage() {
   const [film, setFilm] = useState(null);
   const history = useHistory();
   const location = useLocation();
-  const { filmId } = useParams();
+  const { slug } = useParams();
   const { url, path } = useRouteMatch();
+  const filmId = slug.match(/[a-z0-9]+$/)[0];
 
   useEffect(() => {
     async function fechFilms() {

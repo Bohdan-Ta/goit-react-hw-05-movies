@@ -1,8 +1,11 @@
 import { Link, useLocation } from 'react-router-dom';
 
 import PropTypes from 'prop-types';
+import slugify from 'slugify';
 import noPoster from '../../images/pngwing.png';
 import s from './CardsFilm.module.css';
+
+const createSlugify = string => slugify(string, { lower: true });
 
 function CardsFilm({ films }) {
   const location = useLocation();
@@ -14,7 +17,7 @@ function CardsFilm({ films }) {
             <li key={id} className={s.item}>
               <Link
                 to={{
-                  pathname: `/films/${id}`,
+                  pathname: `/films/${createSlugify(`${title}-${id}`)}`,
                   state: { from: location },
                 }}
                 className={s.title}

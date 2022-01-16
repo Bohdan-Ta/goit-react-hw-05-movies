@@ -36,7 +36,7 @@ function App() {
             <Route path="/films" exact>
               <MoviesPage />
             </Route>
-            <Route path="/films/:filmId">
+            <Route path="/films/:slug">
               <MovieDetailsPage />
             </Route>
             <Route>
