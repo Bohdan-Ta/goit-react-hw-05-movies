@@ -20,7 +20,6 @@ export default function HomePage() {
   const nextPageFilms = () => {
     setPage(page => page + 1);
   };
-  // const data = films;
   return (
     <div className={s.container}>
       <h1 className={s.title}> Trending today </h1>

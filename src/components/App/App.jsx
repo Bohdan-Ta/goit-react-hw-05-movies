@@ -8,13 +8,13 @@ import Loader from '../Loader';
 
 import 'react-toastify/dist/ReactToastify.css';
 
-const HomePage = lazy(() =>
+const AsyncHomePage = lazy(() =>
   import('../../veiws/HomePage' /* webpackChunkName: "home-page" */),
 );
-const MoviesPage = lazy(() =>
+const AsyncMoviesPage = lazy(() =>
   import('../../veiws/MoviesPage' /* webpackChunkName: "movies-page" */),
 );
-const MovieDetailsPage = lazy(() =>
+const AsyncMovieDetailsPage = lazy(() =>
   import(
     '../../veiws/MovieDetailsPage' /* webpackChunkName: "moviesDetails-page" */
   ),
@@ -30,18 +30,13 @@ function App() {
         <AppBar />
         <Suspense fallback={<Loader />}>
           <Switch>
-            <Route path="/" exact>
-              <HomePage />
-            </Route>
-            <Route path="/films" exact>
-              <MoviesPage />
-            </Route>
-            <Route path="/films/:slug">
-              <MovieDetailsPage />
-            </Route>
-            <Route>
-              <NotFoundView />
-            </Route>
+            <Route path="/" exact component={AsyncHomePage} />
+
+            <Route path="/films" exact component={AsyncMoviesPage} />
+
+            <Route path="/films/:slug" component={AsyncMovieDetailsPage} />
+
+            <Route component={NotFoundView} />
           </Switch>
         </Suspense>
         <ToastContainer />
