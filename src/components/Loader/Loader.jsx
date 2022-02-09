@@ -6,7 +6,7 @@ export default function Spinner() {
   return (
     <Loader
       className={s.loader}
-      type="Circles"
+      type="Oval"
       color="#3f51b5"
       height={100}
       width={100}
