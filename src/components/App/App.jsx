@@ -1,12 +1,14 @@
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, useLocation } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 import { ToastContainer } from 'react-toastify';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 import Section from '../Section';
 import AppBar from '../AppBar';
 import Loader from '../Loader';
 
 import 'react-toastify/dist/ReactToastify.css';
+import s from '../App/App.module.css';
 
 const AsyncHomePage = lazy(() =>
   import('../../veiws/HomePage' /* webpackChunkName: "home-page" */),
@@ -24,20 +26,25 @@ const NotFoundView = lazy(() =>
 );
 
 function App() {
+  const location = useLocation();
   return (
     <div>
       <Section>
         <AppBar />
         <Suspense fallback={<Loader />}>
-          <Switch>
-            <Route path="/" exact component={AsyncHomePage} />
+          <TransitionGroup>
+            <CSSTransition timeout={200} classNames={s.fade} key={location.key}>
+              <Switch>
+                <Route path="/" exact component={AsyncHomePage} />
 
-            <Route path="/films" exact component={AsyncMoviesPage} />
+                <Route path="/films" exact component={AsyncMoviesPage} />
 
-            <Route path="/films/:slug" component={AsyncMovieDetailsPage} />
+                <Route path="/films/:slug" component={AsyncMovieDetailsPage} />
 
-            <Route component={NotFoundView} />
-          </Switch>
+                <Route component={NotFoundView} />
+              </Switch>
+            </CSSTransition>
+          </TransitionGroup>
         </Suspense>
         <ToastContainer />
       </Section>
