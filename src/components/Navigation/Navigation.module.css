@@ -5,6 +5,11 @@
   font-weight: normal;
   color: #2a363b;
   font-size: 24px;
+  transition: color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.link:hover,
+.link:focus {
+  text-shadow: 0 1px 1px rgba(105, 97, 97, 0.9);
 }
 .activLink {
   color: #2196f3;
